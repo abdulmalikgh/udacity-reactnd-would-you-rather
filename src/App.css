@@ -1,0 +1,32 @@
+.App {
+
+}
+
+.card {
+    width:30rem;
+    margin-top:2em;
+    margin-right:auto;
+    margin-left:auto;
+}
+form{
+    width:100%;
+    text-align: center;
+}
+form select, form button, input{
+    width: 25rem !important;
+}
+.formText{
+    color: #007bff;
+    font-size: 1.8em;
+    font-weight: bolder;
+}
+.would-you-rather{
+    color:black;
+    display: block;
+    font-weight: bolder;
+    font-size:1.5em;
+    margin-left:16px;
+}
+.questionText{
+    margin-left:16px;
+}
