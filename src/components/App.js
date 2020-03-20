@@ -1,25 +1,36 @@
-import React from 'react';
+import React, { Component } from 'react';
+import  { BrowserRouter as Router, Route,Switch } from 'react-router-dom';
 import '../App.css';
-import Nav from './Nav';
-import { BrowserRouter as Router, Route } from 'react-router-dom';
-import Dashboard from './Dashboard';
 import Login from './Login';
-import NewQuestion from './NewQuestion'
+import { connect } from 'react-redux';
+import handleInitialData from '../actions/shared';
+import Nav from  '../components/Nav';
+import Dashboard from '../components/Dashboard';
+import NewQuestion from '../components/NewQuestion';
+import LeaderBoard from '../components/LeaderBoard';
 
-function App() {
-  return (
+class App extends Component{
+  componentDidMount() {
+    this.props.dispatch(handleInitialData());
+  }
+  render() {
+    return (
     <Router>
-      <div className="App">
-        <Nav />
-        <div className='content'>
-           <Route exact path='/' component={Dashboard} />
-           <Route path='/login' component={Login} />
-           <Route path='/new' component={NewQuestion} />
-        </div>
+    <div className="App">
+ 
+      <div className='content'>
+        <Switch>
+         <Route path='/' component={Login} exact/>
+         <Nav/>
+         <Route path='/home' component={NewQuestion} />
+         <Route path='/new' component={Dashboard} />
+         <Route path='/leaderbaord' component={LeaderBoard} />
+        </Switch>
       </div>
+    </div> 
     </Router>
-   
-  );
+    );
+  }
 }
 
-export default App;
+export default connect()(App)
