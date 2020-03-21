@@ -1,36 +1,30 @@
 import React, { Component } from 'react';
-import  { BrowserRouter as Router, Route,Switch } from 'react-router-dom';
-import '../App.css';
-import Login from './Login';
+import  { Route,Switch, Redirect } from 'react-router-dom';
 import { connect } from 'react-redux';
-import handleInitialData from '../actions/shared';
-import Nav from  '../components/Nav';
-import Dashboard from '../components/Dashboard';
-import NewQuestion from '../components/NewQuestion';
+import '../App.css';
+
+//import handleInitialData from '../actions/shared';
 import LeaderBoard from '../components/LeaderBoard';
+import Home from '../components/Home';
+import NewQuestion from '../components/NewQuestion';
+import Nav from '../components/Nav';
 
 class App extends Component{
-  componentDidMount() {
-    this.props.dispatch(handleInitialData());
-  }
   render() {
     return (
-    <Router>
     <div className="App">
- 
-      <div className='content'>
-        <Switch>
-         <Route path='/' component={Login} exact/>
-         <Nav/>
-         <Route path='/home' component={NewQuestion} />
-         <Route path='/new' component={Dashboard} />
-         <Route path='/leaderbaord' component={LeaderBoard} />
-        </Switch>
-      </div>
+      <Nav />
+      <Switch>
+         <Route exact path='/home' component={Home} />
+         <Route exact path='/new' component={NewQuestion} />
+         <Route exact path='/leaderboard' component={LeaderBoard} />
+         <Redirect exact from='/' to='/home' />
+      </Switch>
     </div> 
-    </Router>
     );
   }
 }
 
-export default connect()(App)
+export default connect( state => ({
+  loggedIn : state.loggedIn
+}))(App)

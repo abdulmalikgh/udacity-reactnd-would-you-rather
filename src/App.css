@@ -30,3 +30,9 @@ form select, form button, input{
 .questionText{
     margin-left:16px;
 }
+.username{
+    color:white !important;
+}
+.username:hover{
+    color:red;
+}

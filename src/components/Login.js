@@ -1,6 +1,7 @@
 import React , { Component } from 'react';
 import { connect } from 'react-redux';
 import { setAuthedUser } from '../actions/authedUser';
+
 class Login extends Component {
         state = {
           userId : ''
@@ -17,7 +18,6 @@ class Login extends Component {
           this.setState({userId:''})
       } else {
         this.props.dispatch(setAuthedUser(this.state.userId))
-        this.props.history.push('/home')
       }
       
     };
