@@ -3,8 +3,8 @@ import React , { Component } from 'react';
 class Login extends Component {
     render() {
         return (
-            <div className='login'> 
-                <div className="card">
+            <div className='newQuestion'> 
+                <div className="card newQuestion-card ">
                     <div className='card-header'>
                         <h2 className="card-title">Create New Question</h2>
                     </div>

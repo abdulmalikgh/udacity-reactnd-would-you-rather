@@ -1,6 +1,8 @@
 import React , { Component } from 'react';
 import { connect } from 'react-redux';
 import { setAuthedUser } from '../actions/authedUser';
+import { changeLoggedIn } from '../actions/loggedIn';
+import { Redirect } from 'react-router-dom';
 
 class Login extends Component {
         state = {
@@ -18,14 +20,19 @@ class Login extends Component {
           this.setState({userId:''})
       } else {
         this.props.dispatch(setAuthedUser(this.state.userId))
+        this.props.dispatch(changeLoggedIn(true))
       }
       
     };
     render() {
         const { user, users } = this.props;
+        if(this.props.loggedIn){
+          const { from } = this.props.location.state || { from :{pathname : '/'}}
+          return <Redirect to={from} />
+        }
         return (
             <div className='login'> 
-                <div className="card">
+                <div className="card login-card">
                     <div className='card-header'>
                         <h4 className="card-title">Welcome to the Would You Rather App!</h4>
                         <h6 className="card-subtitle mb-2 text-muted " style={{textAlign:'center'}}>Please sign in to continue</h6>
@@ -61,11 +68,12 @@ class Login extends Component {
         )
     }
 }
-function mapStateToProps({ users, questions, dispatch}) {
+function mapStateToProps({ users,loggedIn,questions, dispatch}) {
     
     return {
         user : Object.keys(users),
         users,
+        loggedIn,
         dispatch
     }
 }

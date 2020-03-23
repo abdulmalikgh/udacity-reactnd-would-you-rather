@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import  { Route,Switch, Redirect } from 'react-router-dom';
 import { connect } from 'react-redux';
-import '../App.css';
 
+import '../App.css';
 //import handleInitialData from '../actions/shared';
 import LeaderBoard from '../components/LeaderBoard';
 import Home from '../components/Home';
@@ -15,10 +15,10 @@ class App extends Component{
     <div className="App">
       <Nav />
       <Switch>
-         <Route exact path='/home' component={Home} />
+         <Route path='/home' component={Home} />
          <Route exact path='/new' component={NewQuestion} />
          <Route exact path='/leaderboard' component={LeaderBoard} />
-         <Redirect exact from='/' to='/home' />
+         <Redirect  from='/' to='/home' />
       </Switch>
     </div> 
     );

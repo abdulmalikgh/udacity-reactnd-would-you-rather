@@ -2,7 +2,7 @@
 
 }
 
-.card {
+.login-card ,.newQuestion-card{
     width:30rem;
     margin-top:2em;
     margin-right:auto;
@@ -24,7 +24,7 @@ form select, form button, input{
     color:black;
     display: block;
     font-weight: bolder;
-    font-size:1.5em;
+    font-size:1.2em;
     margin-left:16px;
 }
 .questionText{
@@ -35,4 +35,24 @@ form select, form button, input{
 }
 .username:hover{
     color:red;
+}
+/* --- Home && Answered and unanswered component --- */
+.home-card,.poll-card{
+    width:33rem;
+    margin-right:auto;
+    margin-left:auto;
+    margin-top:1em;
+}
+.questions-card{
+    margin:1em;
+}
+.askBy{
+    color:black;
+    font-weight: bold;
+}
+.question-text{
+    color:black;
+    display: block;
+    font-weight: bolder;
+    font-size:1.2em;
 }
