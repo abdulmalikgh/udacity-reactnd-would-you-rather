@@ -1,7 +1,29 @@
 import React , { Component } from 'react';
+import { handleAddQuestion } from '../actions/questions';
+import { connect } from 'react-redux';
 
 class Login extends Component {
+    state = {
+        optionOne:'',
+        optionTwo:'',
+    }
     render() {
+        const handleChange = (e)=>{
+            this.setState({
+                [e.target.name] : e.target.value
+            })
+        }
+        const addQuestion = (e)=>{
+             e.preventDefault();
+             const optionOneText = this.state.optionOne;
+             const optionTwoText = this.state.optionTwo;
+             if(optionOneText !== '' && optionTwoText !== '') {
+              this.props.dispatch(handleAddQuestion(optionOneText,optionTwoText))
+              this.props.history.push('/home/qustions')
+             } else {
+                 alert('Please enter both options ');
+             }
+        }
         return (
             <div className='newQuestion'> 
                 <div className="card newQuestion-card ">
@@ -11,19 +33,19 @@ class Login extends Component {
                     <div className="card-body">
                            <p className='questionText'>Complete the question:</p>
                            <p className='would-you-rather'> Would you rather...</p>
-                           <form>
+                           <form className='new-question'>
                                 <div className="form-group">
                                   <label>
-                                      <input type='text' className='form-control' placeholder='Enter Option One Text Here' />
+                                      <input onChange={handleChange} name='optionOne' type='text' className='form-control' placeholder='Enter Option One Text Here' />
                                   </label>
                                 </div>
                                 <span style={{marginBottom:'10px'}}>OR</span>
                                 <div className="form-group">
                                   <label>
-                                      <input type='text' className='form-control' placeholder='Enter Option Two Text Here'/>
+                                      <input onChange={handleChange} name='optionTwo' type='text' className='form-control' placeholder='Enter Option Two Text Here'/>
                                   </label>
                                 </div>
-                                <button type="submit" className="btn btn-primary">Sign In</button>
+                                <button onClick={addQuestion} type="submit" className="btn btn-dark">submit</button>
                            </form>
                     </div>
                </div>
@@ -32,4 +54,4 @@ class Login extends Component {
     }
 }
 
-export default Login;
+export default connect()(Login);

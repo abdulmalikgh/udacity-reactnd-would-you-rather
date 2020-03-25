@@ -39,7 +39,7 @@ class Login extends Component {
                     </div>
                     <div className="card-body">
                            <p className='formText' style={{textAlign:'center'}}>Sign In</p>
-                           <form>
+                           <form className='login'>
                                 <div className="form-group">
                                 <label htmlFor="selectUser">
                                  <select id='selectUser' className='form-control' 
@@ -57,7 +57,7 @@ class Login extends Component {
                                  </select>
                                 </label>
                                 </div>
-                                <button type="submit" className="btn btn-primary"
+                                <button type="submit" className="btn btn-dark"
                                  onClick = {this.handleLogin} disabled={this.state.userId === '' || this.stateId === 'selectUser'}>
                                    Sign In
                                 </button>

@@ -1,14 +1,16 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
+import { isAnswered } from '../actions/poll';
 
-class UnansweredQuestions extends Component{
+class ViewQuestion extends Component{
+    componentDidMount(){
+        this.props.dispatch(isAnswered(false))
+      }
     render() {
         const { avatarURL, name,text,id} = this.props;
-        console.log('Props from unAnswered', this.props)
         return (
             <div>
-
                 <div className='card-header'>
                    <p className='askBy'>{name} asks:</p>
                 </div>
@@ -18,9 +20,9 @@ class UnansweredQuestions extends Component{
                     </div>
                     <div className="col-md-8">
                         <div className="card-body">
-                            <p className='question-text'>Would you rather</p>
+                                        <p className='question-text'>Would you rather</p>
                             <span>...{text}...</span>
-                            <Link to={`/home/questions/:${id}`} type='button' className='btn btn-dark btn-block mt-3'>View Poll</Link>
+                            <Link exact to={`/home/questions/:${id}`} type='button' className='btn btn-dark btn-block mt-3'>View Poll</Link>
                         </div>
                     </div>
                     </div>
@@ -29,15 +31,15 @@ class UnansweredQuestions extends Component{
         )
     }
 }
-function mapStateToProps({users, questions},{id,isAnswered}){
+function mapStateToProps({users, questions},{id}){
     const question = questions[id]
     const avatarURL = users[question.author].avatarURL;
     const name = users[question.author].name
     const text = question.optionOne.text
 
 return {
-    avatarURL,name,text,questions,isAnswered
+    avatarURL,name,text,questions
 }
 }
 
-export default connect(mapStateToProps)(UnansweredQuestions);
+export default connect(mapStateToProps)(ViewQuestion);

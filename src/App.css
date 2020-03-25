@@ -2,7 +2,7 @@
 
 }
 
-.login-card ,.newQuestion-card{
+.login-card ,.newQuestion-card, .leaderboard-card{
     width:30rem;
     margin-top:2em;
     margin-right:auto;
@@ -12,7 +12,8 @@ form{
     width:100%;
     text-align: center;
 }
-form select, form button, input{
+.new-question select, .new-question button, .new-question input,
+.login select, .login button{
     width: 25rem !important;
 }
 .formText{
@@ -55,4 +56,12 @@ form select, form button, input{
     display: block;
     font-weight: bolder;
     font-size:1.2em;
+}/* ----- answered and unanswerd polls ----*/
+.unanswered-poll button{
+ width: 20rem !important;
+}
+.unanswered-poll label{
+    font-size: 1em;
+    color: black;
+    font-weight: bold;
 }
