@@ -17,12 +17,11 @@ export function addQuestion(question){
           question
     }
 }
-export function addQuestionAnswer (authedUser,qid,answer) {
+export function addQuestionAnswer (users, questions) {
     return {
         type: ADD_QUESTION_ANSWER,
-        qid,
-        authedUser,
-        answer
+        users,
+        questions
     }
 }
 export function handleAddQuestion(optionOneText, optionTwoText){
@@ -32,7 +31,7 @@ export function handleAddQuestion(optionOneText, optionTwoText){
             optionOneText,
             optionTwoText,
             author : authedUser
-        }
+        } 
         return saveQuestion(question).then( question => {
             dispatch(addQuestion(question))
         }).catch( err => {
@@ -41,10 +40,10 @@ export function handleAddQuestion(optionOneText, optionTwoText){
         
       }
 }
-export function handleAddQuestionAnswer(authedUser, qid,answer) {
+export function handleAddQuestionAnswer({authedUser, qid,answer}) {
     return (dispatch)=> {
-        return saveQuestionAnswer( authedUser,qid,answer  ).then(({authedUser,qid,answer})=> {
-            dispatch(addQuestionAnswer(authedUser,qid,answer))
+        return saveQuestionAnswer({authedUser,qid,answer}).then((users,questions) => {
+            dispatch(addQuestionAnswer(users,questions))
         })
     }
 }

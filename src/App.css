@@ -65,3 +65,17 @@ form{
     color: black;
     font-weight: bold;
 }
+.poll-text{
+    color:black;
+    font-weight: bold;
+}
+.poll-vote{
+    color:black;
+    font-weight: bold;
+    text-align: center !important;
+}
+.card-img-container{
+    position: relative;
+    top:25%;
+    margin:0 1em;
+}

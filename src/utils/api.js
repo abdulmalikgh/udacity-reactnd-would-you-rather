@@ -20,7 +20,7 @@ export function getInitialData(users,questions){
 export function saveQuestion(question) {
   return _saveQuestion(question)
 }
-
-export function saveQuestionAnswer(questionInfo){
- return _saveQuestionAnswer(questionInfo)
+ 
+export function saveQuestionAnswer({authedUser, qid, answer}){
+ return _saveQuestionAnswer({authedUser, qid, answer})
 }

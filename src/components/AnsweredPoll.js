@@ -13,22 +13,34 @@ class AnsweredPoll extends React.Component{
                <p className='askBy'> Asked by { author } :</p>
             </div>
             <div className="row no-gutters">
-                <div className="col-md-4">
-                  <img src={avatarURL} className="card-img" alt={author}/>
+                <div className="col-md-5">
+                    <div className='card-img-container'>
+                        <img src={avatarURL} className="card-img" alt={author}/>  
+                    </div>
                 </div>
-              <div className="col-md-8">
+              <div className="col-md-7">
                   <div className="card-body">
                       <p className='question-text'> Results: </p>
-                      <p>
-                           { optionOne }
-                           <span>{optionOneVotes} out of {totalVotes}</span>
-                           <span>percentage {per_optionOne}</span> 
-                      </p>
-                      <p>
-                      { optionTwo } 
-                           <span>{optionTwoVotes} out of {totalVotes}</span>
-                           <span>percentage {per_optionTwo}</span> 
-                      </p>
+                       <div className='card mb-2 border-dark'>
+                          <div className='card-body'>
+                                <p className='poll-text'>Would you rather { optionOne }</p>
+                                <div className="progress " style={{height:'30px'}}>
+                                    <div className="progress-bar bg-dark" role="progressbar" 
+                                    style={{width: `${per_optionOne}%`}} aria-valuenow={per_optionOne} aria-valuemin="0" aria-valuemax="100">{`${per_optionOne}%`}</div>
+                                </div>
+                                <p className='poll-vote'>{optionOneVotes} out of {totalVotes} votes </p>
+                          </div>
+                       </div>
+                       <div className='card border-dark'>
+                            <div className='card-body'>
+                                <p className='poll-text'> Would you rather { optionTwo }</p>
+                                 <div className="progress " style={{height: '30px'}}>
+                                    <div className="progress-bar bg-dark" role="progressbar" 
+                                    style={{width: `${per_optionTwo}%`}} aria-valuenow={per_optionTwo} aria-valuemin="0" aria-valuemax="100">{`${per_optionTwo}%`}</div>
+                                 </div>
+                                <p className='poll-vote'>{optionTwoVotes} out of {totalVotes} votes</p> 
+                            </div>
+                       </div>
                   </div>
               </div>
             </div> 

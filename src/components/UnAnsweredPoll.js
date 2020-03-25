@@ -1,6 +1,5 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { isAnswered } from '../actions/poll';
 import { handleAddQuestionAnswer } from '../actions/questions';
 
 class UnansweredPoll extends React.Component{
@@ -16,10 +15,9 @@ class UnansweredPoll extends React.Component{
            e.preventDefault()
            const qid = questionId;
            const answer = this.state.selectedOption
-           dispatch(handleAddQuestionAnswer(authedUser,qid,answer))
+           dispatch(handleAddQuestionAnswer({authedUser,qid,answer}))
            //dispatch(isAnswered('true'))
        }
-      
         return(
               <div>
                   <div className='card-header'>
