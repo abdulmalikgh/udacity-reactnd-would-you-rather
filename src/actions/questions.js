@@ -1,5 +1,5 @@
-import { saveQuestion,saveAnswerQuestion } from '../utils/api';
-import { addAnswerToUser } from './users';
+import { saveQuestion } from '../utils/api';
+import { addQuestionToUser } from './users';
 
 export const RECEIVE_QUESTIONS = 'RECEIVE_QUESIONS';
 export const ADD_QUESTION = 'ADD_QUESTION';
@@ -37,8 +37,9 @@ export function handleAddQuestion(optionOneText, optionTwoText){
         } 
         return saveQuestion(question).then( question => {
             dispatch(addQuestion(question))
+            dispatch(addQuestionToUser({ question }))
         }).catch( err => {
-            alert('An Error occured', err)
+            console.warn('An Error occured', err)
         })
         
       }

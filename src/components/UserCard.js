@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { isAnswered } from '../actions/poll';
 
-class ViewQuestion extends Component{
+class UserCard extends Component{
     componentDidMount(){
         this.props.dispatch(isAnswered(false))
       }
@@ -22,7 +22,7 @@ class ViewQuestion extends Component{
                         <div className="card-body">
                                         <p className='question-text'>Would you rather</p>
                             <span>...{text}...</span>
-                            <Link exact to={`/home/questions/:${id}`} type='button' className='btn btn-dark btn-block mt-3'>View Poll</Link>
+                            <Link exact to={`/questions/:${id}`} type='button' className='btn btn-dark btn-block mt-3'>View Poll</Link>
                         </div>
                     </div>
                     </div>
@@ -42,4 +42,4 @@ return {
 }
 }
 
-export default connect(mapStateToProps)(ViewQuestion);
+export default connect(mapStateToProps)(UserCard);

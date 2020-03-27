@@ -21,7 +21,7 @@ class Nav extends Component{
         <div className='collapse navbar-collapse' id='navbarSupportedContent'>
          <ul className="navbar-nav mr-auto ml-auto">
          <li className="nav-item">
-           <NavLink className="nav-link active" to='/home'>Home</NavLink>
+           <NavLink className="nav-link" to='/'>Home</NavLink>
          </li>
          <li className="nav-item">
            <NavLink className="nav-link" to='/add'>New Question</NavLink>

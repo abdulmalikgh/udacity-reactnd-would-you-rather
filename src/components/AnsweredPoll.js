@@ -59,10 +59,9 @@ function mapStateToProps({users,questions,authedUser},{id}) {
     const optionTwo = question.optionTwo.text;
     const optionTwoVotes = question.optionTwo.votes.length;
     const totalVotes = optionOneVotes + optionTwoVotes;
-    const per_optionOne = (optionOneVotes / totalVotes ) * 100;
-    const per_optionTwo = ( optionTwoVotes / totalVotes ) * 100;
-    const options = [optionOne,optionTwo]
-    const userAnsweredQuestionsId = user.answers;
+    const per_optionOne = ((optionOneVotes / totalVotes ) * 100).toFixed(2);
+    const per_optionTwo = (( optionTwoVotes / totalVotes ) * 100).toFixed(2);
+    const userAnsweredQuestionsId = user.answers[questionId];
 
     return {
         author, avatarURL, optionOne, optionTwo, question,

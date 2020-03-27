@@ -1,6 +1,6 @@
 import React, { Component } from 'react' ;
 import { connect } from 'react-redux';
-import ViewQuestions from './ViewQuestions';
+import UserCard from './UserCard';
 import { isAnswered } from '../actions/poll';
 
 class Questions extends Component{
@@ -24,14 +24,14 @@ class Questions extends Component{
                 <div className="tab-pane fade show active" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab">
                  {UnansweredQuestionsId.map( id => (
                       <div className="card questions-card" key={id}>
-                          <ViewQuestions id={id} />
+                          <UserCard id={id} />
                       </div>
                   ))}
                 </div>
                 <div className="tab-pane fade" id="nav-profile" role="tabpanel" aria-labelledby="nav-profile-tab">
                   {AnsweredQuestionsId.map( id => (
                       <div className="card questions-card" key={id}>
-                          <ViewQuestions id={id} />
+                          <UserCard id={id} />
                       </div>
                   ))}
                 </div>

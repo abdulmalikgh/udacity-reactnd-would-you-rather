@@ -19,7 +19,7 @@ class Login extends Component {
              const optionTwoText = this.state.optionTwo;
              if(optionOneText !== '' && optionTwoText !== '') {
               this.props.dispatch(handleAddQuestion(optionOneText,optionTwoText))
-              this.props.history.push('/home/qustions')
+              this.props.history.push('/')
              } else {
                  alert('Please enter both options ');
              }
