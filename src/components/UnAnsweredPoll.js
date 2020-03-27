@@ -1,7 +1,8 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { handleAddQuestionAnswer } from '../actions/questions';
-
+import { addAnswerToQuestion} from '../actions/questions';
+import { addAnswerToUser} from '../actions/users'
+import { isAnswered } from '../actions/poll'
 class UnansweredPoll extends React.Component{
     state = {
         selectedOption : 'optionOne'
@@ -15,8 +16,10 @@ class UnansweredPoll extends React.Component{
            e.preventDefault()
            const qid = questionId;
            const answer = this.state.selectedOption
-           dispatch(handleAddQuestionAnswer({authedUser,qid,answer}))
-           //dispatch(isAnswered('true'))
+           //handleAddQuestionAnswer(authedUser,qid,answer)
+           dispatch(addAnswerToQuestion(authedUser,qid,answer))
+           dispatch(addAnswerToUser(authedUser,qid,answer))
+           dispatch(isAnswered('true'))
        }
         return(
               <div>
@@ -45,7 +48,8 @@ class UnansweredPoll extends React.Component{
                                     { optionTwo }
                                     </label>
                                 </div>
-                                <button type="submit" className="btn btn-dark mt-3" onClick={handleSelectedOption}>submit</button>
+                                <button type="submit" className="btn btn-dark mt-3" 
+                                onClick={handleSelectedOption}>submit</button>
                             </form>
                         </div>
                     </div>

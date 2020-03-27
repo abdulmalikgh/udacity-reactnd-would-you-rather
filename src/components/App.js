@@ -3,7 +3,6 @@ import  { Route,Switch, Redirect } from 'react-router-dom';
 import { connect } from 'react-redux';
 
 import '../App.css';
-//import handleInitialData from '../actions/shared';
 import LeaderBoard from '../components/LeaderBoard';
 import Home from '../components/Home';
 import NewQuestion from '../components/NewQuestion';

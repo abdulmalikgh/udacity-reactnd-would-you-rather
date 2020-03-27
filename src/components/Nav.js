@@ -30,10 +30,11 @@ class Nav extends Component{
           <NavLink className="nav-link" to='/leaderboard'>Leader Board</NavLink>
           </li>
           <li className="nav-item pl-4">
-           { user && <span className='username nav-link pl-2'> hello, <span></span>{user.name} </span>}
+            <span className='text-light'> hello, {user.name}</span>
+            <img src={user.avatarURL} className='rounded-circle p-2' alt={user.avatarURL} style={{width:'45px',height:'45px'}}/>
           </li>
           <li>
-          <NavLink className="nav-link" to='/login' onClick={logout}>Logout</NavLink>
+          <button className='btn btn-outline-primary mt-1' onClick={logout}>Logout</button>
           </li>
          </ul>
        </div>

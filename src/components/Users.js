@@ -5,15 +5,26 @@ class Users extends React.Component{
         const { name, avatarURL, questions, answers, total } = this.props;
         return (
             <div className='row no-gutters'>
-                <div className='col-md-4 col-lg-4'>
-                    <img className='card-img'src={avatarURL} alt={avatarURL}/>
+                <div className='col-md-3 col-lg-3 mt-4'>
+                    <div className='leaderboard-img-wrapper'>
+                        <img className='card-img rounded-circle'src={avatarURL} alt={avatarURL}/>   
+                    </div>
                 </div>
-                <div className='col-md-8 col-lg-8'>
+                <div className='col-md-6 col-lg-6'>
                     <div className='card-body'>
-                        <p>{name}</p>
-                        <p> Answered Questions : {answers}</p>
-                        <p> created Questions: {questions}</p>
-                        <p> total : {total } </p>
+                        <p className='leaderboard-username'>{name}</p>
+                        <p className='leaderboard-text'> Answered Questions <span>{answers}</span> </p>
+                        <p className='leaderboard-text'> created Questions <span>{questions}</span></p>
+                    </div>
+                </div>
+                <div className='col-md-3 col-lg-3'>
+                    <div className='card total-card'>
+                        <div className='card-header leaderboard-text text-center'>
+                           score 
+                        </div>
+                        <div className='card-body'>
+                            <button className='btn btn-dark btn-md ml-3'>{total}</button>
+                        </div>
                     </div>
                 </div>
             </div>

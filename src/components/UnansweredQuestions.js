@@ -5,7 +5,6 @@ import { Link } from 'react-router-dom';
 class UnansweredQuestions extends Component{
     render() {
         const { avatarURL, name,text,id} = this.props;
-        console.log('Props from unAnswered', this.props)
         return (
             <div>
 

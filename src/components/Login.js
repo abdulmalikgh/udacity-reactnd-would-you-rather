@@ -33,31 +33,27 @@ class Login extends Component {
         return (
             <div className='login'> 
                 <div className="card login-card">
-                    <div className='card-header'>
-                        <h4 className="card-title">Welcome to the Would You Rather App!</h4>
-                        <h6 className="card-subtitle mb-2 text-muted " style={{textAlign:'center'}}>Please sign in to continue</h6>
-                    </div>
+                    <LoginHeader />
+                    <LoginBrand />
                     <div className="card-body">
-                           <p className='formText' style={{textAlign:'center'}}>Sign In</p>
+                           <LoginText />
                            <form className='login'>
                                 <div className="form-group">
                                 <label htmlFor="selectUser">
                                  <select id='selectUser' className='form-control' 
                                  onChange={this.handleChange}>
-
                                      <option value='selectUser'>select user</option>
                                      {user && user.map(user => (
                                          <option key = {users[user].id} 
-                                         value={users[user].id}>
-
+                                         value={users[user].id}
+                                         data-icon={users[user].avatarURL}>
                                         {users[user].name}
-
                                     </option>
                                      ))}
                                  </select>
                                 </label>
                                 </div>
-                                <button type="submit" className="btn btn-dark"
+                                <button type="submit" className="btn bg-primary login-btn"
                                  onClick = {this.handleLogin} disabled={this.state.userId === '' || this.stateId === 'selectUser'}>
                                    Sign In
                                 </button>
@@ -68,6 +64,20 @@ class Login extends Component {
         )
     }
 }
+const LoginHeader = ()=>(
+    <div className='card-header'>
+        <h4 className="card-title">Welcome to the Would You Rather App!</h4>
+        <h6 className="card-subtitle mb-2 text-muted " style={{textAlign:'center'}}>Please sign in to continue</h6>
+    </div>
+)
+const LoginBrand = ()=> (
+    <di id='card-img-container'>
+        <img className='card-image' alt='would you rather' src='/rsz_wyr.jpg'/>
+    </di>
+)
+const LoginText = () => (
+    <p className='formText' style={{textAlign:'center'}}>Sign In</p>
+)
 function mapStateToProps({ users,loggedIn,questions, dispatch}) {
     
     return {
