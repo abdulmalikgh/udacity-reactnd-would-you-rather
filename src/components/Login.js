@@ -71,9 +71,9 @@ const LoginHeader = ()=>(
     </div>
 )
 const LoginBrand = ()=> (
-    <di id='card-img-container'>
+    <div id='card-img-container'>
         <img className='card-image' alt='would you rather' src='/rsz_wyr.jpg'/>
-    </di>
+    </div>
 )
 const LoginText = () => (
     <p className='formText' style={{textAlign:'center'}}>Sign In</p>

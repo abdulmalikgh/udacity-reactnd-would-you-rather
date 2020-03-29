@@ -8,13 +8,13 @@ export default function users(state = {}, action){
                 ...action.users
             }
         case ADD_QUSTION_TO_USER:
-            const {id,author} = action;
+            const { id ,author } = action;
 
             return {
                 ...state,
                 [author] : {
                     ...state[author],
-                questions:state[author].questions.contact(id)
+                questions: state[author].questions.concat(id)
                 }
             }
         case ADD_ANSWER_TO_USER:

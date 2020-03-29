@@ -37,7 +37,7 @@ export function handleAddQuestion(optionOneText, optionTwoText){
         } 
         return saveQuestion(question).then( question => {
             dispatch(addQuestion(question))
-            dispatch(addQuestionToUser({ question }))
+            dispatch(addQuestionToUser(question.id,question.author))
         }).catch( err => {
             console.warn('An Error occured', err)
         })

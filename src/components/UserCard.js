@@ -21,8 +21,8 @@ class UserCard extends Component{
                     <div className="col-md-8">
                         <div className="card-body">
                                         <p className='question-text'>Would you rather</p>
-                            <span>...{text}...</span>
-                            <Link exact to={`/questions/:${id}`} type='button' className='btn btn-dark btn-block mt-3'>View Poll</Link>
+                            <span>{text}<br/> ...or...</span>
+                            <Link  to={`/questions/:${id}`} type='button' className='btn btn-dark btn-block mt-3'>View Poll</Link>
                         </div>
                     </div>
                     </div>

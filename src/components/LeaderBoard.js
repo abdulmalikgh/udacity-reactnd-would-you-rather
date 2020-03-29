@@ -1,25 +1,25 @@
-import React, { Component } from 'react';
+import React, { Component,Fragment } from 'react';
 import { connect } from 'react-redux';
-import Users from './Users';
+import LeaderBoardCard from './LeaderBoardCard';
 
 class LeaderBoard extends Component{
     render() {
       return(
-        <div >
+        <Fragment>
           {
             this.props.usersId.map( id => (
               <div className='card leaderboard-card' key={id}>
-                <Users id={id} />
+                <LeaderBoardCard id={id} />
               </div>  
             ))
           }
-        </div>
+        </Fragment>
       )
     }
 }
 function mapStateToProps({ users }){
   const usersId = Object.keys(users)
-  .sort( (a,b) => (Object.keys(users[b].answers).length + users[b].questions.length) -(users[a].questions.length + Object.keys(users[a].answers).length)
+  .sort( (a,b) => (Object.keys(users[b].answers).length + users[b].questions.length) - (users[a].questions.length + Object.keys(users[a].answers).length)
   )
   
   return {

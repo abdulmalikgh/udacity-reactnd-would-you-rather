@@ -16,7 +16,7 @@ export function receiveUsers(users) {
         users
     }
 }
-export function addQuestionToUser({ id, author }){
+export function addQuestionToUser( id, author ){
     return {
         type: ADD_QUSTION_TO_USER,
         id, 

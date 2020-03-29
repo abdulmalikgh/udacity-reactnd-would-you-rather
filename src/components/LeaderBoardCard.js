@@ -1,9 +1,15 @@
-import React from 'react';
+import React,{Fragment } from 'react';
 import { connect } from 'react-redux';
+import { FaTrophy } from 'react-icons/fa'
+
 class Users extends React.Component{
     render(){
         const { name, avatarURL, questions, answers, total } = this.props;
         return (
+            <Fragment>
+            <div id='trophyContainer'>
+                <FaTrophy size={20} color='green' className='trophy'/>
+            </div>
             <div className='row no-gutters'>
                 <div className='col-md-3 col-lg-3 mt-4'>
                     <div className='leaderboard-img-wrapper'>
@@ -28,6 +34,7 @@ class Users extends React.Component{
                     </div>
                 </div>
             </div>
+            </Fragment>
         )
     }
 }

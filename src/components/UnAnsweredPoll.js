@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import { addAnswerToQuestion} from '../actions/questions';
 import { addAnswerToUser} from '../actions/users'
 import { isAnswered } from '../actions/poll'
+import { Link } from 'react-router-dom'
 class UnansweredPoll extends React.Component{
     state = {
         selectedOption : 'optionOne'
@@ -16,7 +17,6 @@ class UnansweredPoll extends React.Component{
            e.preventDefault()
            const qid = questionId;
            const answer = this.state.selectedOption
-           //handleAddQuestionAnswer(authedUser,qid,answer)
            dispatch(addAnswerToQuestion(authedUser,qid,answer))
            dispatch(addAnswerToUser(authedUser,qid,answer))
            dispatch(isAnswered('true'))
@@ -25,6 +25,7 @@ class UnansweredPoll extends React.Component{
               <div>
                   <div className='card-header'>
                      <p className='askBy'>{ author } asks:</p>
+                     <Link type='button' to='/' className='btn btn-outline-dark back-button'>Back</Link>
                   </div>
                   <div className="row no-gutters">
                       <div className="col-md-4">

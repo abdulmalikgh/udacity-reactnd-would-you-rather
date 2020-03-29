@@ -16,10 +16,10 @@ class App extends Component{
       <Nav />
       <Switch>
          <Route exact path='/' component={Questions} />
-         <Route  path='/questions/:id' component={PollDetails} />
          <Route  exact path='/questions/bad_id' component={PageNotFound}/>
-         <Route  path='/leaderboard' component={LeaderBoard} />
-         <Route  path='/add' component={NewQuestion} />
+         <Route  exact path='/questions/:id' component={PollDetails} />
+         <Route  exact path='/leaderboard' component={LeaderBoard} />
+         <Route  exact path='/add' component={NewQuestion} />
          <Route  component={PageNotFound} />
       </Switch>
     </div> 

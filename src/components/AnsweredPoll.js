@@ -1,14 +1,33 @@
-import React from 'react';
+import React, { Fragment }from 'react';
 import { connect } from 'react-redux';
+import { Link } from 'react-router-dom';
+
+const Uservotelabel = ()=>(
+ <div className='userVote bd-success'>
+   <span>your <br/> vote</span>
+ </div>   
+)
 
 class AnsweredPoll extends React.Component{
     render(){
-        const { avatarURL, author, optionOne, optionTwo, 
-        optionOneVotes, optionTwoVotes, totalVotes,
-        per_optionOne,per_optionTwo,} = this.props;
-        //console.log('Props from Answered Question ', this.props.userAnsweredQuestionsId)
+        const {
+            avatarURL, author, optionOne, optionTwo, 
+            optionOneVotes, optionTwoVotes, totalVotes,
+            per_optionOne,per_optionTwo,userVote
+        } = this.props;
+
+        const defaultBg = 'progress-bar bg-dark';
+        const secondaryBg = 'progress-bar bg-success';
+        let option1 = defaultBg, option2 = defaultBg;
+
+        if( optionOneVotes > optionTwoVotes){
+               option1 = secondaryBg 
+        }else if( optionTwoVotes > optionOneVotes){
+             option2 = secondaryBg
+         }
+         console.log('userVote',userVote)
         return(
-            <div>
+            <Fragment>
             <div className='card-header'>
                <p className='askBy'> Asked by { author } :</p>
             </div>
@@ -23,9 +42,10 @@ class AnsweredPoll extends React.Component{
                       <p className='question-text'> Results: </p>
                        <div className='card mb-2 border-dark'>
                           <div className='card-body'>
+                             {userVote === 'optionOne' && <Uservotelabel />}
                                 <p className='poll-text'>Would you rather { optionOne }</p>
                                 <div className="progress " style={{height:'30px'}}>
-                                    <div className="progress-bar bg-dark" role="progressbar" 
+                                    <div className={option1} role="progressbar" 
                                     style={{width: `${per_optionOne}%`}} aria-valuenow={per_optionOne} aria-valuemin="0" aria-valuemax="100">{`${per_optionOne}%`}</div>
                                 </div>
                                 <p className='poll-vote'>{optionOneVotes} out of {totalVotes} votes </p>
@@ -33,18 +53,22 @@ class AnsweredPoll extends React.Component{
                        </div>
                        <div className='card border-dark'>
                             <div className='card-body'>
+                                {userVote === 'optionTwo' && <Uservotelabel/>}
                                 <p className='poll-text'> Would you rather { optionTwo }</p>
                                  <div className="progress " style={{height: '30px'}}>
-                                    <div className="progress-bar bg-dark" role="progressbar" 
+                                    <div className={option2} role="progressbar" 
                                     style={{width: `${per_optionTwo}%`}} aria-valuenow={per_optionTwo} aria-valuemin="0" aria-valuemax="100">{`${per_optionTwo}%`}</div>
                                  </div>
                                 <p className='poll-vote'>{optionTwoVotes} out of {totalVotes} votes</p> 
                             </div>
                        </div>
+                       <Link to='/' type='button' className='btn m-2 btn-outline-dark'>
+                           Back
+                       </Link>
                   </div>
               </div>
             </div> 
-      </div>     
+      </Fragment>     
         )
     }
 }
@@ -61,12 +85,12 @@ function mapStateToProps({users,questions,authedUser},{id}) {
     const totalVotes = optionOneVotes + optionTwoVotes;
     const per_optionOne = ((optionOneVotes / totalVotes ) * 100).toFixed(2);
     const per_optionTwo = (( optionTwoVotes / totalVotes ) * 100).toFixed(2);
-    const userAnsweredQuestionsId = user.answers[questionId];
+    const userVote= user.answers[questionId];
 
     return {
-        author, avatarURL, optionOne, optionTwo, question,
-        optionOneVotes,optionTwoVotes,totalVotes,per_optionOne,per_optionTwo,
-        userAnsweredQuestionsId
-    }
+        author,avatarURL,optionOne,optionTwo,question,per_optionTwo,
+        optionOneVotes,optionTwoVotes,userVote,per_optionOne,totalVotes       
+        }
+
 }
 export default connect(mapStateToProps)(AnsweredPoll)
