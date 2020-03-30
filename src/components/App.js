@@ -1,32 +1,51 @@
-import React, { Component } from 'react';
-import  { Route,Switch, Redirect } from 'react-router-dom';
+import React, { Component ,Fragment } from 'react';
+import  { BrowserRouter as Router, Route,Switch } from 'react-router-dom';
 import { connect } from 'react-redux';
-
 import '../App.css';
 import LeaderBoard from '../components/LeaderBoard';
 import NewQuestion from '../components/NewQuestion';
 import Nav from '../components/Nav';
-import Questions from './Questions';
+import Home from './Home';
 import PollDetails from './PollDetails';
 import PageNotFound from './PageNotFound'
+import Login from './Login';
+import handleInitialData from '../actions/shared';
+
 class App extends Component{
+  componentDidMount(){
+    this.props.dispatch(handleInitialData())
+  }
   render() {
     return (
-    <div className="App">
-      <Nav />
-      <Switch>
-         <Route exact path='/' component={Questions} />
-         <Route  exact path='/questions/bad_id' component={PageNotFound}/>
-         <Route  exact path='/questions/:id' component={PollDetails} />
-         <Route  exact path='/leaderboard' component={LeaderBoard} />
-         <Route  exact path='/add' component={NewQuestion} />
-         <Route  component={PageNotFound} />
-      </Switch>
-    </div> 
+    <Router >
+      <div className="App">
+        {!this.props.loggedIn ?
+         (<Route render={()=> (
+           <Login />
+         )}/>)
+         :
+         (
+          <Fragment>
+             <Nav />
+            <Switch>
+              <Route exact path='/' component={Home} />
+              <Route   path='/questions/bad_id' component={PageNotFound}/>
+              <Route   path='/questions/:id' component={PollDetails} />
+              <Route   path='/leaderboard' component={LeaderBoard} />
+              <Route   path='/add' component={NewQuestion} />
+              <Route  component={PageNotFound} />
+            </Switch>
+          </Fragment>
+         )}
+      </div> 
+    </Router>
     );
   }
 }
 
-export default connect( state => ({
-  loggedIn : state.loggedIn
-}))(App)
+function mapStateToProps({loggedIn,authedUser,dispatch}) {
+  return {
+    authedUser, loggedIn,dispatch
+  }
+}
+export default connect(mapStateToProps)(App)

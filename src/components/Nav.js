@@ -3,6 +3,7 @@ import { NavLink } from 'react-router-dom';
 import { connect }  from 'react-redux';
 import { clearAuthedUser } from '../actions/authedUser';
 import {changeLoggedIn } from '../actions/loggedIn';
+
 class Nav extends Component{
   render(){
     const  logout = ()=>{
@@ -30,8 +31,8 @@ class Nav extends Component{
           <NavLink className="nav-link" to='/leaderboard'>Leader Board</NavLink>
           </li>
           <li className="nav-item pl-4">
-            <span className='text-light'> hello, {user.name}</span>
-            <img src={user.avatarURL} className='rounded-circle p-2' alt={user.avatarURL} style={{width:'45px',height:'45px'}}/>
+            <span className='text-primary'> hello, { user.name}</span>
+            <img src={user.avatarURL} className='rounded-circle p-2' alt={ user.avatarURL} style={{width:'45px',height:'45px'}}/>
           </li>
           <li>
           <button className='btn btn-outline-primary mt-1' onClick={logout}>Logout</button>

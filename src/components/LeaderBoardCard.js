@@ -1,29 +1,30 @@
 import React,{Fragment } from 'react';
 import { connect } from 'react-redux';
-import { FaTrophy } from 'react-icons/fa'
+import { FaTrophy } from 'react-icons/fa';
 
 class Users extends React.Component{
     render(){
-        const { name, avatarURL, questions, answers, total } = this.props;
+        const { name, avatarURL, questions, answers, total,trophyColor } = this.props;
+        
         return (
             <Fragment>
             <div id='trophyContainer'>
-                <FaTrophy size={20} color='green' className='trophy'/>
+                <FaTrophy size={20} color={trophyColor} className='trophy'/>
             </div>
             <div className='row no-gutters'>
-                <div className='col-md-3 col-lg-3 mt-4'>
+                <div className='col-3 mt-2'>
                     <div className='leaderboard-img-wrapper'>
                         <img className='card-img rounded-circle'src={avatarURL} alt={avatarURL}/>   
                     </div>
                 </div>
-                <div className='col-md-6 col-lg-6'>
+                <div className='col-6'>
                     <div className='card-body'>
                         <p className='leaderboard-username'>{name}</p>
                         <p className='leaderboard-text'> Answered Questions <span>{answers}</span> </p>
                         <p className='leaderboard-text'> created Questions <span>{questions}</span></p>
                     </div>
                 </div>
-                <div className='col-md-3 col-lg-3'>
+                <div className='col-3'>
                     <div className='card total-card'>
                         <div className='card-header leaderboard-text text-center'>
                            score 
@@ -38,7 +39,7 @@ class Users extends React.Component{
         )
     }
 }
-function mapStateToProps({ users },{id}){
+function mapStateToProps({ users },{id,trophyColor}){
     const user = users[id];
     const name = user.name;
     const avatarURL = user.avatarURL;
@@ -46,7 +47,7 @@ function mapStateToProps({ users },{id}){
     const answers = Object.keys(user.answers).length;
     const total = questions + answers;
  return {
-   name , avatarURL, questions, answers, total
+     name , avatarURL, questions, answers, total,
  }
 }
 export default connect(mapStateToProps)(Users);

@@ -1,7 +1,6 @@
 import React, { Fragment }from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
-
 const Uservotelabel = ()=>(
  <div className='userVote bd-success'>
    <span>your <br/> vote</span>
@@ -25,11 +24,15 @@ class AnsweredPoll extends React.Component{
         }else if( optionTwoVotes > optionOneVotes){
              option2 = secondaryBg
          }
-         console.log('userVote',userVote)
+
         return(
             <Fragment>
             <div className='card-header'>
                <p className='askBy'> Asked by { author } :</p>
+               <Link to='/' type='button' className='btn btn-outline-dark' 
+               style={{float:'right', marginTop:'-30px',}}>
+                    Back
+                </Link>
             </div>
             <div className="row no-gutters">
                 <div className="col-md-5">
@@ -62,9 +65,6 @@ class AnsweredPoll extends React.Component{
                                 <p className='poll-vote'>{optionTwoVotes} out of {totalVotes} votes</p> 
                             </div>
                        </div>
-                       <Link to='/' type='button' className='btn m-2 btn-outline-dark'>
-                           Back
-                       </Link>
                   </div>
               </div>
             </div> 
@@ -73,7 +73,7 @@ class AnsweredPoll extends React.Component{
     }
 }
 function mapStateToProps({users,questions,authedUser},{id}) { 
-    const questionId = id.substr(1)
+    const questionId = id
     const question = questions[questionId];
     const user = users[question.author];
     const author = user.name;
@@ -83,8 +83,8 @@ function mapStateToProps({users,questions,authedUser},{id}) {
     const optionTwo = question.optionTwo.text;
     const optionTwoVotes = question.optionTwo.votes.length;
     const totalVotes = optionOneVotes + optionTwoVotes;
-    const per_optionOne = ((optionOneVotes / totalVotes ) * 100).toFixed(2);
-    const per_optionTwo = (( optionTwoVotes / totalVotes ) * 100).toFixed(2);
+    const per_optionOne = Math.round(((optionOneVotes / totalVotes ) * 100));
+    const per_optionTwo = Math.round((( optionTwoVotes / totalVotes ) * 100));
     const userVote= user.answers[questionId];
 
     return {

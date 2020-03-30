@@ -3,7 +3,7 @@
 }
 
 .login-card ,.newQuestion-card{
-    width:30rem;
+    max-width:30rem;
     margin-top:2em;
     margin-right:auto;
     margin-left:auto;
@@ -18,7 +18,7 @@ form{
     width:100%;
     text-align: center;
 }
-.new-question select, .new-question button, .new-question input,
+.new-question select, .new-question button,.new-question input,
 .login select, .login button{
     width: 25rem !important;
 }
@@ -48,7 +48,7 @@ select option{
 }
 /* --- Home && Answered and unanswered component --- */
 .home-card,.poll-card,.leaderboard-card{
-    width:33rem;
+    max-width:33rem;
     margin-right:auto;
     margin-left:auto;
     margin-top:1em;
@@ -67,7 +67,7 @@ select option{
     font-size:1.2em;
 }/* ----- answered and unanswerd polls ----*/
 .unanswered-poll button{
- width: 20rem !important;
+ max-width: 20rem !important;
 }
 .unanswered-poll label{
     font-size: 1em;
@@ -139,4 +139,26 @@ select option{
 .trophy{
   position: absolute;
   top:-40px;
+}
+
+/* ---- Mobile View ------- */
+@media screen and (max-width:500px) {
+    .leaderboard-text{
+        color:black;
+        font-size: .9em;
+        opacity: .7;
+    }
+    .leaderboard-img-wrapper{
+        margin-top: 2em;
+    }
+    .leaderboard-username{
+        font-size: 1.5em;
+    }
+    .newQuestion-card{
+        max-width: 350px;
+    }
+
+   .new-question input{
+       width:300px !important;
+   }
 }

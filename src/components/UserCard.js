@@ -15,10 +15,10 @@ class UserCard extends Component{
                    <p className='askBy'>{name} asks:</p>
                 </div>
                 <div className="row no-gutters">
-                    <div className="col-md-4">
+                    <div className="col-4">
                         <img src={avatarURL} className="card-img" alt="..." />
                     </div>
-                    <div className="col-md-8">
+                    <div className="col-8">
                         <div className="card-body">
                                         <p className='question-text'>Would you rather</p>
                             <span>{text}<br/> ...or...</span>
@@ -32,6 +32,7 @@ class UserCard extends Component{
     }
 }
 function mapStateToProps({users, questions},{id}){
+
     const question = questions[id]
     const avatarURL = users[question.author].avatarURL;
     const name = users[question.author].name

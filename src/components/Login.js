@@ -2,7 +2,6 @@ import React , { Component } from 'react';
 import { connect } from 'react-redux';
 import { setAuthedUser } from '../actions/authedUser';
 import { changeLoggedIn } from '../actions/loggedIn';
-import { Redirect } from 'react-router-dom';
 
 class Login extends Component {
         state = {
@@ -26,10 +25,6 @@ class Login extends Component {
     };
     render() {
         const { user, users } = this.props;
-        if(this.props.loggedIn){
-          const { from } = this.props.location.state || { from :{pathname : '/'}}
-          return <Redirect to={from} />
-        }
         return (
             <div className='login'> 
                 <div className="card login-card">
@@ -78,7 +73,7 @@ const LoginBrand = ()=> (
 const LoginText = () => (
     <p className='formText' style={{textAlign:'center'}}>Sign In</p>
 )
-function mapStateToProps({ users,loggedIn,questions, dispatch}) {
+function mapStateToProps({ users,loggedIn,dispatch}) {
     
     return {
         user : Object.keys(users),
