@@ -1,6 +1,7 @@
 import React, { Fragment }from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
+import AnsweredPollOption from './AnsweredPollOption'
 const Uservotelabel = ()=>(
  <div className='userVote bd-success'>
    <span>your <br/> vote</span>
@@ -46,24 +47,17 @@ class AnsweredPoll extends React.Component{
                        <div className='card mb-2 border-dark'>
                           <div className='card-body'>
                              {userVote === 'optionOne' && <Uservotelabel />}
-                                <p className='poll-text'>Would you rather { optionOne }</p>
-                                <div className="progress " style={{height:'30px'}}>
-                                    <div className={option1} role="progressbar" 
-                                    style={{width: `${per_optionOne}%`}} aria-valuenow={per_optionOne} aria-valuemin="0" aria-valuemax="100">{`${per_optionOne}%`}</div>
-                                </div>
-                                <p className='poll-vote'>{optionOneVotes} out of {totalVotes} votes </p>
+                             <AnsweredPollOption 
+                             optionstyle={option1} optiontext={optionOne} optionVotes={optionOneVotes}
+                             option_perc={per_optionOne} totalVotes={totalVotes}/>
                           </div>
                        </div>
                        <div className='card border-dark'>
                             <div className='card-body'>
                                 {userVote === 'optionTwo' && <Uservotelabel/>}
-                                <p className='poll-text'> Would you rather { optionTwo }</p>
-                                 <div className="progress " style={{height: '30px'}}>
-                                    <div className={option2} role="progressbar" 
-                                    style={{width: `${per_optionTwo}%`}} aria-valuenow={per_optionTwo} aria-valuemin="0" aria-valuemax="100">{`${per_optionTwo}%`}</div>
-                                 </div>
-                                <p className='poll-vote'>{optionTwoVotes} out of {totalVotes} votes</p> 
-                            </div>
+                                <AnsweredPollOption 
+                                optionstyle={option2} optiontext={optionTwo} optionVotes={optionTwoVotes}
+                                option_perc={per_optionTwo} totalVotes={totalVotes}/>                        </div>
                        </div>
                   </div>
               </div>

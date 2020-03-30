@@ -10,7 +10,6 @@ class Poll extends Component{
         if(bad_id) {
             return <Redirect to='/questions/bad_id' />
         }
-        console.log('id',id)
         return(
          <div className='card home-card mb-3'>
              {poll === false ?  <UnAnsweredPoll id={id} /> : <AnsweredPoll id ={id}/>}
